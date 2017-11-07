@@ -317,3 +317,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AStart: {x: 0, y: 0, z: 0}
   BEnd: {x: 10, y: 4, z: 0}
+  One: 0
+  MySpeed: 0.5
