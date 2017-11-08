@@ -29,13 +29,18 @@ public class MOB : MonoBehaviour {
 //		float P1 = MoveTowards (Position.x, BEnd.x, MySpeed * Time.deltaTime);
 //		float P2 = MoveTowards (Position.y, BEnd.y, MySpeed * Time.deltaTime);
 //		float P3 = MoveTowards (Position.z, BEnd.z, MySpeed * Time.deltaTime);
-		float P1 = MoveTowards2 (Position.x, BEnd.x, MySpeed * Time.deltaTime);
-		float P2 = MoveTowards2 (Position.y, BEnd.y, MySpeed * Time.deltaTime);
-		float P3 = MoveTowards2 (Position.z, BEnd.z, MySpeed * Time.deltaTime);
-		Position.x = P1;
-		Position.y = P2;
-		Position.z = P3;
-		transform.position = Position;
+//		float P1 = MoveTowards2 (Position.x, BEnd.x, MySpeed * Time.deltaTime);
+//		float P2 = MoveTowards2 (Position.y, BEnd.y, MySpeed * Time.deltaTime);
+//		float P3 = MoveTowards2 (Position.z, BEnd.z, MySpeed * Time.deltaTime);
+//		float P1 = MoveTowards3 (Position.x, BEnd.x, MySpeed * Time.deltaTime);
+//		float P2 = MoveTowards3 (Position.y, BEnd.y, MySpeed * Time.deltaTime);
+//		float P3 = MoveTowards3 (Position.z, BEnd.z, MySpeed * Time.deltaTime);
+		Vector3 P4 = MoveTowards4 (Position, BEnd, MySpeed * Time.deltaTime);
+//		Position.x = P1;
+//		Position.y = P2;
+//		Position.z = P3;
+//		transform.position = Position;
+		transform.position = P4;
 	}
 
 	float MoveTowards (float currentPosition, float targetPosition, float maxDistance) {
@@ -64,14 +69,83 @@ public class MOB : MonoBehaviour {
 		float delta = targetPosition - currentPosition;
 
 		if (delta > maxDistance) {
-			delta *= maxDistance;
+			delta = maxDistance;
 		}
 
 		if (delta < -maxDistance) {
-			delta *= -1;
+			delta = -maxDistance;
 		}
 
 		float CP2 = currentPosition + delta;
 		return CP2;
 	}
+
+	float MoveTowards3 (float currentPosition, float targetPosition, float maxDistance) {
+		Debug.Log ("MoveMob3 called");
+		Debug.Log ("positions: " + currentPosition + " " + targetPosition + " " + maxDistance);
+
+		float distanceToGo = targetPosition - currentPosition;
+
+		float length = Mathf.Abs (distanceToGo);
+
+		bool shouldShorten;
+
+		float shorteningCoefficientFraction;
+
+		float moveAmount;
+
+		float finalPosition;
+
+		if (length < maxDistance) {
+			shouldShorten = false;
+		} else {
+			shouldShorten = true;
+		}
+
+		if (shouldShorten) {
+			shorteningCoefficientFraction = maxDistance / length;
+			moveAmount = distanceToGo * shorteningCoefficientFraction;
+		} else {
+			moveAmount = distanceToGo;
+		}
+
+		finalPosition = currentPosition + moveAmount;
+		return finalPosition;
+
+	}
+
+	Vector3 MoveTowards4 (Vector3 currentPosition, Vector3 targetPosition, float maxDistance) {
+		Debug.Log ("MoveMob3 called");
+		Debug.Log ("positions: " + currentPosition + " " + targetPosition + " " + maxDistance);
+
+		Vector3 distanceToGo = targetPosition - currentPosition;
+
+		float length = distanceToGo.magnitude;
+
+		bool shouldShorten;
+
+		float shorteningCoefficientFraction;
+
+		Vector3 moveAmount;
+
+		Vector3 finalPosition;
+
+		if (length < maxDistance) {
+			shouldShorten = false;
+		} else {
+			shouldShorten = true;
+		}
+
+		if (shouldShorten) {
+			shorteningCoefficientFraction = maxDistance / length;
+			moveAmount = distanceToGo * shorteningCoefficientFraction;
+		} else {
+			moveAmount = distanceToGo;
+		}
+
+		finalPosition = currentPosition + moveAmount;
+		return finalPosition;
+
+	}
 }
+
