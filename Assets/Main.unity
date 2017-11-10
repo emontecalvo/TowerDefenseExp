@@ -318,5 +318,10 @@ MonoBehaviour:
   AStart: {x: 0, y: 0, z: 0}
   BEnd: {x: 10, y: 4, z: 0}
   CEnd: {x: 13, y: 1, z: 1}
-  One: 0
-  MySpeed: 0.5
+  FinalDestination: {x: 0, y: 0, z: 0}
+  DestPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 10, y: 4, z: 0}
+  - {x: 13, y: 1, z: 1}
+  - {x: 15, y: 1, z: 1}
+  MySpeed: 0.9

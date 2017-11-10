@@ -5,50 +5,34 @@ using UnityEngine;
 
 public class MOB : MonoBehaviour {
 
-	public Vector3 AStart;
-	public Vector3 BEnd;
-	public Vector3 CEnd;
 	public Vector3 FinalDestination;
-	bool DestinationReached = false;
-	bool BEndReached = false;
-	bool CEndReached = false;
+
+	public Vector3[] DestPoints;
+
+	int DestI = 1;
 
 	public float MySpeed = 1f;
 
 
 	void Start () {
-		transform.position = AStart;
-		FinalDestination.x = 13;
-		FinalDestination.y = 1;
-		FinalDestination.z = 1;
-//		Debug.LogFormat ("Hi world" + DateTime.Now.ToString ());
 
 	}
 
 	void OnDrawGizmos () {
-		Gizmos.DrawLine (AStart, BEnd);
-		Gizmos.DrawLine (BEnd, CEnd);
+		for (int i = 0; i < DestPoints.Length - 1; i++) {
+			Gizmos.DrawLine (DestPoints[i], DestPoints[i+1]);
+		}
 	}
 		
 	void Update () {
-		if (!DestinationReached) {
-			if (!BEndReached) {
-				Vector3 Position = transform.position;
-				Vector3 P4 = MoveTowards4 (Position, BEnd, MySpeed * Time.deltaTime);
-				transform.position = P4;
-				if (P4 == BEnd) {
-					Debug.Log ("HERE!!!");
-					BEndReached = true;
-				}
-			} else if (!CEndReached) {
-				Vector3 Position = transform.position;
-				Vector3 P5 = MoveTowards4 (Position, CEnd, MySpeed * Time.deltaTime);
-				transform.position = P5;
-				if (P5 == CEnd) {
-					CEndReached = true;
-					DestinationReached = true;
-					Debug.Log ("HERE!!!");
-				}
+		Debug.Log ("destI is : " + DestI);
+
+		if (DestI < DestPoints.Length) {
+			Vector3 Position = transform.position;
+			Vector3 P4 = MoveTowards4 (Position, DestPoints[DestI], MySpeed * Time.deltaTime);
+			transform.position = P4;
+			if (P4 == DestPoints[DestI]) {
+				DestI += 1;
 			}
 		}
 	}
@@ -81,8 +65,6 @@ public class MOB : MonoBehaviour {
 		finalPosition = currentPosition + moveAmount;
 		return finalPosition;
 	}
-
-
 
 
 }
