@@ -25,7 +25,7 @@ public class MOB : MonoBehaviour {
 	}
 		
 	void Update () {
-		Debug.Log ("destI is : " + DestI);
+//		Debug.Log ("destI is : " + DestI);
 
 		if (DestI < DestPoints.Length) {
 			Vector3 Position = transform.position;
@@ -39,8 +39,8 @@ public class MOB : MonoBehaviour {
 
 
 	Vector3 MoveTowards4 (Vector3 currentPosition, Vector3 targetPosition, float maxDistance) {
-		Debug.Log ("MoveMob4 called");
-		Debug.Log ("positions: " + currentPosition + " " + targetPosition + " " + maxDistance);
+//		Debug.Log ("MoveMob4 called");
+//		Debug.Log ("positions: " + currentPosition + " " + targetPosition + " " + maxDistance);
 
 		Vector3 distanceToGo = targetPosition - currentPosition;
 		float length = distanceToGo.magnitude;
