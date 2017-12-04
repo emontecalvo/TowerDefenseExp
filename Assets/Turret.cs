@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour {
 
+	public GameObject BulletPrefab;
+
 	float TurretRange = 4f;
 
 	public MOB Enemy1;
@@ -30,7 +32,7 @@ public class Turret : MonoBehaviour {
 			float howLongSinceFire = Time.time - TimeLastFired;
 			if (howLongSinceFire > 1) {
 				Fire ();
-				Debug.DrawLine (turretPosition, enemyPosition, Color.red, 0.1f);
+//				Debug.DrawLine (turretPosition, enemyPosition, Color.red, 0.1f);
 			}
 
 		}
@@ -39,6 +41,14 @@ public class Turret : MonoBehaviour {
 	void Fire() {
 		Debug.Log ("I'm firing");
 		TimeLastFired = Time.time;
+
+		GameObject bulletGO = Instantiate (BulletPrefab);
+
+		Projectile singleBullet = bulletGO.GetComponent<Projectile> ();
+
+		singleBullet.MyParentTurret = this;
+
+		singleBullet.Target = Enemy1;
 	}
 
 

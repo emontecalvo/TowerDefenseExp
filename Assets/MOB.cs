@@ -38,7 +38,9 @@ public class MOB : MonoBehaviour {
 	}
 
 
-	Vector3 MoveTowards4 (Vector3 currentPosition, Vector3 targetPosition, float maxDistance) {
+	public static Vector3 MoveTowards4 (Vector3 currentPosition, Vector3 targetPosition, float maxDistance) {
+		// static means THIS THING IS NOT SPECIFIC TO AN INSTANCE OF AN OBJECT
+		// SIMILAR TO A GLOBAL VARIABLE, static means we can call this even if an enemy doesn't exist
 //		Debug.Log ("MoveMob4 called");
 //		Debug.Log ("positions: " + currentPosition + " " + targetPosition + " " + maxDistance);
 
