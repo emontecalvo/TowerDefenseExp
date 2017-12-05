@@ -21,6 +21,10 @@ public class Turret : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Enemy1 == null) {
+			// my target is dead  TODO:  retarget
+			return;
+		}
 		Vector3 turretPosition = transform.position;
 		Vector3 enemyPosition = Enemy1.transform.position;
 //		Debug.Log ("enemyPosition: " + enemyPosition);
@@ -39,7 +43,6 @@ public class Turret : MonoBehaviour {
 	}
 
 	void Fire() {
-		Debug.Log ("I'm firing");
 		TimeLastFired = Time.time;
 
 		GameObject bulletGO = Instantiate (BulletPrefab);

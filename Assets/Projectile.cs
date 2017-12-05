@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
 
 	public MOB Target;
 	public Turret MyParentTurret;
+	public int Damage = 1;
 
 	public float MySpeed = 1f;
 
@@ -27,7 +28,7 @@ public class Projectile : MonoBehaviour {
 		Debug.DrawLine (position, destination, Color.red);
 
 		if (P4 == destination) {
-			Debug.Log ("REACHED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			Target.HandleProjectileImpact (Damage);
 			Destroy (gameObject);
 		}
 	}

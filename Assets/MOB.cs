@@ -13,9 +13,11 @@ public class MOB : MonoBehaviour {
 
 	public float MySpeed = 1f;
 
+	public int MaxHitPoints = 4;
+	int CurrentHitPoints;
 
 	void Start () {
-
+		CurrentHitPoints = MaxHitPoints;
 	}
 
 	void OnDrawGizmos () {
@@ -26,7 +28,6 @@ public class MOB : MonoBehaviour {
 		
 	void Update () {
 //		Debug.Log ("destI is : " + DestI);
-
 		if (DestI < DestPoints.Length) {
 			Vector3 Position = transform.position;
 			Vector3 P4 = MoveTowards4 (Position, DestPoints[DestI], MySpeed * Time.deltaTime);
@@ -68,6 +69,13 @@ public class MOB : MonoBehaviour {
 		return finalPosition;
 	}
 
+	public void HandleProjectileImpact(int damageAmount) {
+		Debug.Log ("HANDLE IMPACT CALLED");
+		CurrentHitPoints -= 1;
+		if (CurrentHitPoints == 0) {
+			Destroy (gameObject);
+		}
+	}
 
 }
 
