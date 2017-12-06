@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class MOB : MonoBehaviour {
 
-	public Vector3 FinalDestination;
-
 	public Vector3[] DestPoints;
 
 	int DestI = 1;
