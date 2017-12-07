@@ -12,6 +12,8 @@ public class WaveMgr : MonoBehaviour {
 
 	float TimeLastFired;
 
+	public List<MOB> AllMOBs = new List<MOB>();
+
 	void Start () {
 
 	}
@@ -29,9 +31,13 @@ public class WaveMgr : MonoBehaviour {
 	void Fire() {
 		TimeLastFired = Time.time;
 
+		// mobGO is the Game Object
 		GameObject mobGO = Instantiate (MOBPrefab);
 
+		// mob is the component
 		MOB mob = mobGO.GetComponent<MOB> ();
+
+		AllMOBs.Add (mob);
 
 		mob.DestPoints = Path1;
 

@@ -145,6 +145,7 @@ MonoBehaviour:
   Path2: []
   Path3: []
   MOBPrefab: {fileID: 1666871877333922, guid: 59c2f15cc31a0446d9293614b378ccb1, type: 2}
+  AllMOBs: []
 --- !u!4 &624144415
 Transform:
   m_ObjectHideFlags: 0
@@ -348,6 +349,11 @@ Prefab:
       propertyPath: Enemy1
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114279659761687540, guid: a68bbe016d04542189814a77a487948c,
+        type: 2}
+      propertyPath: waveMgr
+      value: 
+      objectReference: {fileID: 624144414}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a68bbe016d04542189814a77a487948c, type: 2}
   m_IsPrefabParent: 0

@@ -14,13 +14,46 @@ public class Turret : MonoBehaviour {
 
 	float TimeLastFired;
 
+	public WaveMgr waveMgr;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
+
+	void Update() {
+		FindClosestEnemy ();
+		ShootAtEnemyIfInRange ();
+	}
+
+	void FindClosestEnemy() {
+		
+		Vector3 turretPosition = transform.position;
+		float shortestDistance = 10000f;
+		MOB closestMob = null;
+
+		for (int i = 0; i < waveMgr.AllMOBs.Count; i++) {
+			MOB mob = waveMgr.AllMOBs [i];
+			if (mob == null) {
+				continue;
+			}
+			Vector3 mobPosition = mob.transform.position;
+			Vector3 relativePosition = mobPosition - turretPosition;
+
+			float distance = relativePosition.magnitude;
+
+			if (distance < shortestDistance) {
+				shortestDistance = distance;
+				closestMob = mob;
+			}
+		}
+
+		Enemy1 = closestMob;
+
+	}
 	
 	// Update is called once per frame
-	void Update () {
+	void ShootAtEnemyIfInRange () {
 		if (Enemy1 == null) {
 			// my target is dead  TODO:  retarget
 			return;
