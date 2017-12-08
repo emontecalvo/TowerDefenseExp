@@ -68,7 +68,7 @@ public class MOB : MonoBehaviour {
 	}
 
 	public void HandleProjectileImpact(int damageAmount) {
-		Debug.Log ("HANDLE IMPACT CALLED");
+//		Debug.Log ("HANDLE IMPACT CALLED");
 		CurrentHitPoints -= 1;
 		if (CurrentHitPoints == 0) {
 			Destroy (gameObject);
